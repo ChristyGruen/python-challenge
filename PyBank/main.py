@@ -1,8 +1,6 @@
 from os import terminal_size
 
-
-
-    # import libraries os, csv
+    #import libraries os, csv
 import os
 import csv
 
@@ -14,7 +12,9 @@ NMonths = []
 NPL =[]
 ChangePL = []
 TotProfit = 0
-LineCounter = 0
+TotChange = 0
+MinChange = 0
+MaxChange = 0
 
     #read csv
 with open(PyBankCSV) as csvfile:
@@ -23,6 +23,7 @@ with open(PyBankCSV) as csvfile:
     print(csvreader)
         #read header row and print
     csv_header = next(csvreader)
+        #Loop to capture list of months NMonths, list of profitloss NPL, sum of total profit TotProfit, calculate and create list of Change in PL, 
 
     counter = 0
     for line in csvreader:
@@ -30,35 +31,22 @@ with open(PyBankCSV) as csvfile:
             PrevPL = int(line[1])
         NMonths.append(line[0])
         NPL.append(line[1])
+        TotProfit = TotProfit + int(line[1])
         CurrentPL = int(line[1])
-    
-        ChangePL.append(CurrentPL - PrevPL)
+        CalcChange = CurrentPL-PrevPL
+        ChangePL.append(CalcChange)
+        TotChange = TotChange + CalcChange
         PrevPL = int(line[1])
+        if CalcChange < MinChange:
+            MinChange = CalcChange
+            MinChangeMo = line[0]
+        if CalcChange > MaxChange:
+            MaxChange = CalcChange 
+            MaxChangeMo = line[0]
         counter +=1
-        
-    #Net total of Profit 
-        # TotProfit =  loop to add profit/loss to total profit counter
-        #TotProfit = TotProfit + line[1]
-    #Total number of months
-        # NMonths = loop to create list of months and count list length
-        # NPL= loop to create list of profit/loss (just in case)
-        # ChangePL = loop to calculate change by month
-            #calculate if PrevPL >= CurrentPL
-            #ChangePLpoint = abs(PrevPL - CurrentPL)
-            #elif PrevPL < CurrentPL
-            #ChangePLpoint = abs(PrevPL - CurrentPL)*-1
-
-
-#print (NMonths)
-print(ChangePL)
-print (len(NMonths))
-
-print ('++++++++')
-#print (ChangePL)
-    #Profit/losses change 
-
-
     
+AveChange = round(TotChange/(len(ChangePL)-1),2)
+
     #greatest increase in profits
         # MaxPL = max profit loss change list value and month
         # max ChangePL, return index, use index to find month in NMonths
@@ -66,9 +54,16 @@ print ('++++++++')
         # MinPL = min profit loss change list value and month
         # min ChangePL, return index, use index to find month in NMonths
     # print summary to terminal and text file
-        # print header "Financial Analysis"
-        # print separator "-------"
-        # print with titles: NMonths, TotProfit, AvePL, MaxPL, MinPL
-   
+print(ChangePL)
+print("```text")
+print ("Financial Analysis")
+print ("----------------------------")
+print (f"Total Months: {len(NMonths)}")
+print (f"Total: ${TotProfit}")
+#
+print (f"Average Change: ${AveChange}")
+print (f"Greatest Increase in Profits: {MaxChangeMo} (${MaxChange})")
+print (f"Greatest Decrease in Profits: {MinChangeMo} (${MinChange})")
+print ('```')
 
 #
