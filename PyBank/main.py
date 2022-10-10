@@ -1,5 +1,4 @@
-from os import terminal_size
-
+#PyBank Homework Chris Gruenhagen
     #import libraries os, csv
 import os
 import csv
@@ -19,8 +18,6 @@ MaxChange = 0
     #read csv
 with open(PyBankCSV) as csvfile:
     csvreader = csv.reader(csvfile,delimiter = ',')
-        #will print location of csvdata, not the data itself
-    #print(csvreader)
         #read header row
     csv_header = next(csvreader)
         #Loop to capture list of months NMonths, list of profitloss NPL, sum of total profit TotProfit, 
@@ -49,7 +46,6 @@ with open(PyBankCSV) as csvfile:
 AveChange = round(TotChange/(len(ChangePL)-1),2)
 
     # print summary to terminal and text file
-#print(ChangePL)
 print("```text")
 print ("Financial Analysis")
 print ("----------------------------")
@@ -60,22 +56,8 @@ print (f"Greatest Increase in Profits: {MaxChangeMo} (${MaxChange})")
 print (f"Greatest Decrease in Profits: {MinChangeMo} (${MinChange})")
 print ('```')
 
-#try writing per zip lesson
-# OutputFile = os.path.join("PyBankOutput.csv")
-# with open(OutputFile,"w",newline='') as datafile:
-#     writer = csv.writer(datafile)
-#     writer.writerow("```text")
-#     writer.writerow("Financial Analysis")
-#     writer.writerow("----------------------------")
-#     writer.writerow(f"Total Months: {len(NMonths)}")
-#     writer.writerow(f"Total: ${TotProfit}")
-#     writer.writerow(f"Average Change: ${AveChange}")
-#     writer.writerow(f"Greatest Increase in Profits: {MaxChangeMo} (${MaxChange})")
-#     writer.writerow(f"Greatest Decrease in Profits: {MinChangeMo} (${MinChange})")
-#     writer.writerow('```')
 
-#try writing per https://www.pythontutorial.net/python-basics/python-write-text-file/
-#"/n" newline character per https://www.adamsmith.haus/python/answers/how-to-write-to-a-file-in-python#:~:text=Use%20writelines()%20to%20write,be%20in%20a%20single%20line.
+    #writing per https://www.pythontutorial.net/python-basics/python-write-text-file/
 OutputFile = os.path.join("analysis","PyBankOutput.txt")
 with open(OutputFile,"w") as datafile:
     datafile.writelines("```text""\n")
