@@ -28,18 +28,16 @@ TotVotes = 0
 Candidates =[]
 NewCand = "Chris Gruenhagen"
 CandVotes = []
-
+PercentVotes = []
 
     #read csv
 with open(PyPollCSV) as csvfile:
     csvreader = csv.reader(csvfile,delimiter = ',')
-        #will print location of csvdata, not the data itself
-    print(csvreader)
-        #read header row and print
-    csv_header = next(csvreader)
-        #Loop to capture list of months NMonths, list of profitloss NPL, sum of total profit TotProfit, 
-        # calculate and create list of Change in PL, caputre max and min change and month
 
+        #read header row
+    csv_header = next(csvreader)
+        #Loop to capture csv info 
+       
     #counter = 0
     for line in csvreader:
         TotVotes += 1
@@ -53,6 +51,19 @@ with open(PyPollCSV) as csvfile:
             NewCand = line[2]
             Candidates.append(line[2])
             CandVotes.append(0)
+            PercentVotes.append(0)
+        CurrentCand = line[2]
+        CurrentCandIndex = Candidates.index(CurrentCand)
+        CandVotes[CurrentCandIndex] +=1
+    #create percentage list
+    
+    for i in range(0,len(PercentVotes)):
+        PercentVotes[i] =round((CandVotes[i]/TotVotes)*100,3)
+
+    
+ 
+
+
 
         
 
@@ -82,7 +93,9 @@ print (TotVotes)
 print (Candidates)
 print (NewCand)
 print (CandVotes)
-
+print (CurrentCand)
+print (CurrentCandIndex)
+print (PercentVotes)
 
 print("```text")
 print ("Election Results")
