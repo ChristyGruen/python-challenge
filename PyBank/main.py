@@ -23,7 +23,8 @@ with open(PyBankCSV) as csvfile:
     print(csvreader)
         #read header row and print
     csv_header = next(csvreader)
-        #Loop to capture list of months NMonths, list of profitloss NPL, sum of total profit TotProfit, calculate and create list of Change in PL, 
+        #Loop to capture list of months NMonths, list of profitloss NPL, sum of total profit TotProfit, 
+        # calculate and create list of Change in PL, caputre max and min change and month
 
     counter = 0
     for line in csvreader:
@@ -44,15 +45,9 @@ with open(PyBankCSV) as csvfile:
             MaxChange = CalcChange 
             MaxChangeMo = line[0]
         counter +=1
-    
+    #average change calculated to correct for zero in ChangePL[0] for len(changePL)
 AveChange = round(TotChange/(len(ChangePL)-1),2)
 
-    #greatest increase in profits
-        # MaxPL = max profit loss change list value and month
-        # max ChangePL, return index, use index to find month in NMonths
-    #greatest decrease in profits
-        # MinPL = min profit loss change list value and month
-        # min ChangePL, return index, use index to find month in NMonths
     # print summary to terminal and text file
 print(ChangePL)
 print("```text")
@@ -60,10 +55,35 @@ print ("Financial Analysis")
 print ("----------------------------")
 print (f"Total Months: {len(NMonths)}")
 print (f"Total: ${TotProfit}")
-#
 print (f"Average Change: ${AveChange}")
 print (f"Greatest Increase in Profits: {MaxChangeMo} (${MaxChange})")
 print (f"Greatest Decrease in Profits: {MinChangeMo} (${MinChange})")
 print ('```')
 
-#
+#try writing per zip lesson
+# OutputFile = os.path.join("PyBankOutput.csv")
+# with open(OutputFile,"w",newline='') as datafile:
+#     writer = csv.writer(datafile)
+#     writer.writerow("```text")
+#     writer.writerow("Financial Analysis")
+#     writer.writerow("----------------------------")
+#     writer.writerow(f"Total Months: {len(NMonths)}")
+#     writer.writerow(f"Total: ${TotProfit}")
+#     writer.writerow(f"Average Change: ${AveChange}")
+#     writer.writerow(f"Greatest Increase in Profits: {MaxChangeMo} (${MaxChange})")
+#     writer.writerow(f"Greatest Decrease in Profits: {MinChangeMo} (${MinChange})")
+#     writer.writerow('```')
+
+#try writing per https://www.pythontutorial.net/python-basics/python-write-text-file/
+#"/n" newline character per https://www.adamsmith.haus/python/answers/how-to-write-to-a-file-in-python#:~:text=Use%20writelines()%20to%20write,be%20in%20a%20single%20line.
+OutputFile = os.path.join("PyBankOutput.txt")
+with open(OutputFile,"w") as datafile:
+    datafile.writelines("```text""\n")
+    datafile.writelines("Financial Analysis""\n")
+    datafile.writelines("----------------------------""\n")
+    datafile.writelines(f"Total Months: {len(NMonths)}""\n")
+    datafile.writelines(f"Total: ${TotProfit}""\n")
+    datafile.writelines(f"Average Change: ${AveChange}""\n")
+    datafile.writelines(f"Greatest Increase in Profits: {MaxChangeMo} (${MaxChange})""\n")
+    datafile.writelines(f"Greatest Decrease in Profits: {MinChangeMo} (${MinChange})""\n")
+    datafile.writelines('```'"\n")
