@@ -23,29 +23,34 @@ with open(PyBankCSV) as csvfile:
     print(csvreader)
         #read header row and print
     csv_header = next(csvreader)
-    print(f"DON'T KEEP FOR FINAL HOMEWORKK CSV Header: {csv_header}")
 
     counter = 0
     for line in csvreader:
-        #if counter ==0:
-            #PrevPL = int(line[1])
-
+        if counter ==0:
+            PrevPL = int(line[1])
+        NMonths.append(line[0])
+        NPL.append(line[1])
+        CurrentPL = int(line[1])
+    
+        ChangePL.append(CurrentPL - PrevPL)
+        PrevPL = int(line[1])
+        counter +=1
+        
+    #Net total of Profit 
+        # TotProfit =  loop to add profit/loss to total profit counter
+        #TotProfit = TotProfit + line[1]
     #Total number of months
         # NMonths = loop to create list of months and count list length
         # NPL= loop to create list of profit/loss (just in case)
         # ChangePL = loop to calculate change by month
-        NMonths.append(line[0])
-        NPL.append(line[1])
-        #CurrentPL = int(line[1])
-        #Christry = PrevPL - CurrentPL
-        #ChangePL.append(Christry)
-        PrevPL = line[1]
+            #calculate if PrevPL >= CurrentPL
+            #ChangePLpoint = abs(PrevPL - CurrentPL)
+            #elif PrevPL < CurrentPL
+            #ChangePLpoint = abs(PrevPL - CurrentPL)*-1
 
-    #Net total of Profit 
-        # TotProfit =  loop to add profit/loss to total profit counter
-        #TotProfit = TotProfit + line[1]
 
-print (NMonths)
+#print (NMonths)
+print(ChangePL)
 print (len(NMonths))
 
 print ('++++++++')
