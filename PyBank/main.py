@@ -20,8 +20,8 @@ MaxChange = 0
 with open(PyBankCSV) as csvfile:
     csvreader = csv.reader(csvfile,delimiter = ',')
         #will print location of csvdata, not the data itself
-    print(csvreader)
-        #read header row and print
+    #print(csvreader)
+        #read header row
     csv_header = next(csvreader)
         #Loop to capture list of months NMonths, list of profitloss NPL, sum of total profit TotProfit, 
         # calculate and create list of Change in PL, caputre max and min change and month
@@ -49,7 +49,7 @@ with open(PyBankCSV) as csvfile:
 AveChange = round(TotChange/(len(ChangePL)-1),2)
 
     # print summary to terminal and text file
-print(ChangePL)
+#print(ChangePL)
 print("```text")
 print ("Financial Analysis")
 print ("----------------------------")
