@@ -76,7 +76,7 @@ print ('```')
 
 #try writing per https://www.pythontutorial.net/python-basics/python-write-text-file/
 #"/n" newline character per https://www.adamsmith.haus/python/answers/how-to-write-to-a-file-in-python#:~:text=Use%20writelines()%20to%20write,be%20in%20a%20single%20line.
-OutputFile = os.path.join("PyBankOutput.txt")
+OutputFile = os.path.join("analysis","PyBankOutput.txt")
 with open(OutputFile,"w") as datafile:
     datafile.writelines("```text""\n")
     datafile.writelines("Financial Analysis""\n")
