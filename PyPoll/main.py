@@ -55,83 +55,61 @@ with open(PyPollCSV) as csvfile:
         CurrentCand = line[2]
         CurrentCandIndex = Candidates.index(CurrentCand)
         CandVotes[CurrentCandIndex] +=1
+  
     #create percentage list
-    
     for i in range(0,len(PercentVotes)):
         PercentVotes[i] =round((CandVotes[i]/TotVotes)*100,3)
-
-    
+      
+    #Determine winner
+    MaxVotes = CandVotes[0]
+    for i in range(0,len(CandVotes)):
+        if CandVotes[i] > MaxVotes:
+            MaxVotes = CandVotes[i]
+            MaxVotesIndex = CandVotes.index(MaxVotes)
+            Winner = Candidates[MaxVotesIndex]
  
+#create zip for summary print, incorrect format when printed
+# roster = zip(Candidates,PercentVotes,CandVotes)
+# for r in roster:
+#     print (r)
 
-
-
-        
-
-
-       
-        # NMonths.append(line[0])
-        # NPL.append(line[1])
-        # TotProfit = TotProfit + int(line[1])
-        # CurrentPL = int(line[1])
-        # CalcChange = CurrentPL-PrevPL
-        # ChangePL.append(CalcChange)
-        # TotChange = TotChange + CalcChange
-        # PrevPL = int(line[1])
-        # if CalcChange < MinChange:
-        #     MinChange = CalcChange
-        #     MinChangeMo = line[0]
-        # if CalcChange > MaxChange:
-        #     MaxChange = CalcChange 
-        #     MaxChangeMo = line[0]
-        #counter +=1
-
-
-Winner = "someone" #need to figure out how to pull winner
     # print summary to terminal and text file
 
-print (TotVotes)
-print (Candidates)
-print (NewCand)
-print (CandVotes)
-print (CurrentCand)
-print (CurrentCandIndex)
-print (PercentVotes)
+# print (TotVotes)
+# print (Candidates)
+# print (NewCand)
+# print (CandVotes)
+# print (CurrentCand)
+# print (CurrentCandIndex)
+# print (PercentVotes)
+# print (MaxVotes)
+# print (MaxVotesIndex)
+# print (Winner)
 
 print("```text")
 print ("Election Results")
 print ("----------------------------")
-#print (f"Total Votes: {len(TotVotes)}")
+print (f"Total Votes: {TotVotes}")
 print ("----------------------------")
-#don't know how to create list of candidates with percent and totals
+for i in range(0,len(Candidates)):
+    print (f"{Candidates[i]}: {PercentVotes[i]}% ({CandVotes[i]})")
 print ("----------------------------")
-# print(f"Winner: {Winner}")
+print(f"Winner: {Winner}")
 print ("----------------------------")
 print ('```')
 
-#try writing per zip lesson
-# OutputFile = os.path.join("PyBankOutput.csv")
-# with open(OutputFile,"w",newline='') as datafile:
-#     writer = csv.writer(datafile)
-#     writer.writerow("```text")
-#     writer.writerow("Financial Analysis")
-#     writer.writerow("----------------------------")
-#     writer.writerow(f"Total Months: {len(NMonths)}")
-#     writer.writerow(f"Total: ${TotProfit}")
-#     writer.writerow(f"Average Change: ${AveChange}")
-#     writer.writerow(f"Greatest Increase in Profits: {MaxChangeMo} (${MaxChange})")
-#     writer.writerow(f"Greatest Decrease in Profits: {MinChangeMo} (${MinChange})")
-#     writer.writerow('```')
-
-#try writing per https://www.pythontutorial.net/python-basics/python-write-text-file/
-#"/n" newline character per https://www.adamsmith.haus/python/answers/how-to-write-to-a-file-in-python#:~:text=Use%20writelines()%20to%20write,be%20in%20a%20single%20line.
-# OutputFile = os.path.join("PyBankOutput.txt")
-# with open(OutputFile,"w") as datafile:
-#     datafile.writelines("```text""\n")
-#     datafile.writelines("Financial Analysis""\n")
-#     datafile.writelines("----------------------------""\n")
-#     datafile.writelines(f"Total Months: {len(NMonths)}""\n")
-#     datafile.writelines(f"Total: ${TotProfit}""\n")
-#     datafile.writelines(f"Average Change: ${AveChange}""\n")
-#     datafile.writelines(f"Greatest Increase in Profits: {MaxChangeMo} (${MaxChange})""\n")
-#     datafile.writelines(f"Greatest Decrease in Profits: {MinChangeMo} (${MinChange})""\n")
-#     datafile.writelines('```'"\n")
+# try writing per https://www.pythontutorial.net/python-basics/python-write-text-file/
+# "/n" newline character per https://www.adamsmith.haus/python/answers/how-to-write-to-a-file-in-python#:~:text=Use%20writelines()%20to%20write,be%20in%20a%20single%20line.
+OutputFile = os.path.join("PyPollOutput.txt")
+with open(OutputFile,"w") as datafile:
+    datafile.writelines("```text""\n")
+    datafile.writelines("Election Results""\n")
+    datafile.writelines("----------------------------""\n")
+    datafile.writelines(f"Total Votes: {TotVotes}""\n")
+    datafile.writelines("----------------------------""\n")
+    for i in range(0,len(Candidates)):
+        datafile.writelines(f"{Candidates[i]}: {PercentVotes[i]}% ({CandVotes[i]})""\n")
+    datafile.writelines("----------------------------""\n")
+    datafile.writelines(f"Winner: {Winner}""\n")
+    datafile.writelines("----------------------------""\n")
+    datafile.writelines('```'"\n")
