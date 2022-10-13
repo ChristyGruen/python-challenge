@@ -18,7 +18,7 @@ MaxChange = 0
     #read csv
 with open(PyBankCSV) as csvfile:
     csvreader = csv.reader(csvfile,delimiter = ',')
-        #read header row
+        #read and store header row
     csv_header = next(csvreader)
         #Loop to capture list of months NMonths, list of profitloss NPL, sum of total profit TotProfit, 
         # calculate and create list of Change in PL, caputre max and min change and month
@@ -46,7 +46,7 @@ with open(PyBankCSV) as csvfile:
 AveChange = round(TotChange/(len(ChangePL)-1),2)
 
     # print summary to terminal and text file
-print("```text")
+
 print ("Financial Analysis")
 print ("----------------------------")
 print (f"Total Months: {len(NMonths)}")
@@ -54,13 +54,12 @@ print (f"Total: ${TotProfit}")
 print (f"Average Change: ${AveChange}")
 print (f"Greatest Increase in Profits: {MaxChangeMo} (${MaxChange})")
 print (f"Greatest Decrease in Profits: {MinChangeMo} (${MinChange})")
-print ('```')
+
 
 
     #writing per https://www.pythontutorial.net/python-basics/python-write-text-file/
 OutputFile = os.path.join("analysis","PyBankOutput.txt")
 with open(OutputFile,"w") as datafile:
-    datafile.writelines("```text""\n")
     datafile.writelines("Financial Analysis""\n")
     datafile.writelines("----------------------------""\n")
     datafile.writelines(f"Total Months: {len(NMonths)}""\n")
@@ -68,4 +67,4 @@ with open(OutputFile,"w") as datafile:
     datafile.writelines(f"Average Change: ${AveChange}""\n")
     datafile.writelines(f"Greatest Increase in Profits: {MaxChangeMo} (${MaxChange})""\n")
     datafile.writelines(f"Greatest Decrease in Profits: {MinChangeMo} (${MinChange})""\n")
-    datafile.writelines('```'"\n")
+
