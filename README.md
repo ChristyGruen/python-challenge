@@ -7,7 +7,7 @@ Homework log
 3. PyPoll homework:  Saved election_data.csv to PyPoll Resources folder. Updated main.py with multiple commits to github.  Final files (main.py and PyPollOutput.txt) saved and pushed to github.
 
 
-#*REFERENCE for homework*
+***See below for original homework instructions***
 
 # Unit 3 Homework: Python
 
