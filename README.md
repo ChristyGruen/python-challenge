@@ -1,16 +1,14 @@
-### Week 3 Python Challenge Homework 
-## Chris Gruenhagen 13Oct2022
+# Week 3 Python Challenge Homework 
+### Chris Gruenhagen 13Oct2022
 
 Homework log
 1. Setup: Created PyBand and PyPoll folders. Created main.py file, Resources folder and analysis folder in PyBand and PyPoll folders.  Pushed files and folders to Github using git add. git commit -m "add PyBank and PyPoll folders and files" and git push.
-2. PyBank Instructions:  Saved budget_data.csv to PyBank Resources folder.  Updated main.py with multiple commits to github.  Final files (main.py and PyBankOutput.txt) saved and pushed to github.
-3. PyPoll Instructions:  Saved election_data.csv to PyPoll Resources folder. Updated main.py with multiple commits to github.  Final files (main.py and PyPollOutput.txt) saved and pushed to github.
+2. PyBank homework:  Saved budget_data.csv to PyBank Resources folder.  Updated main.py with multiple commits to github.  Final files (main.py and PyBankOutput.txt) saved and pushed to github.
+3. PyPoll homework:  Saved election_data.csv to PyPoll Resources folder. Updated main.py with multiple commits to github.  Final files (main.py and PyPollOutput.txt) saved and pushed to github.
 
 
+#*REFERENCE for homework*
 
-
-
-###REFERENCE for homework:
 # Unit 3 Homework: Python
 
 In this assignment, you'll complete two challenges in which you'll apply your new Python skills. 
